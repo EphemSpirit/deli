@@ -1,3 +1,74 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+/* HOME PAGE */
+
+.home-container,
+.about-container {
+  position: relative;
+  height: 92.5vh;
+  width: 100%;
+  background-size: cover;
+}
+
+.home-container { background-image: url('deli-background.jpg'); }
+
+.background-img {
+  position: relative;
+  background-image: url('deli-background.jpg');
+  background-size: cover;
+  filter: blur(4px);
+  height: 100vh;
+  width: 100%;
+}
+
+.attribute {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  color: #fff;
+}
+
+.attribute > a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.branding,
+.tagline {
+  position: absolute;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+.branding {
+  top: 20px;
+  left: 25%;
+  height: 250px;
+  width: 50%;
+  line-height: 250px;
+  font-size: 2em;
+  color: #fff;
+}
+
+.tagline {
+  position: absolute;
+  top: 50%;
+  left: 12.5%;
+  width: 75%;
+  height: auto;
+  line-height: 50px;
+  color: #000;
+}
+
+/* ABOUT PAGE */
+
+.about-container {
+  background-image: url('deli-two.jpg');
+}
+
+.bio {
+  position: absolute;
+
+}
