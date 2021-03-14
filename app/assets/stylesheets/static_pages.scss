@@ -4,7 +4,8 @@
 /* HOME PAGE */
 
 .home-container,
-.about-container {
+.about-container,
+.contact-container {
   position: relative;
   height: 92.5vh;
   width: 100%;
@@ -38,18 +39,27 @@
 .tagline {
   position: absolute;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 5px;
 }
 
 .branding {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   top: 20px;
   left: 25%;
   height: 250px;
   width: 50%;
-  line-height: 250px;
-  font-size: 2em;
-  color: #fff;
+  font-family: Cabin, sans-serif;
+  font-size: 3em;
+  text-decoration: underline;
+  color: #000;
+}
+
+.cutesy {
+  font-size: .5em;
 }
 
 .tagline {
@@ -70,5 +80,59 @@
 
 .bio {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  left: 15%;
+  top: 15%;
+  height: 500px;
+  width: 70%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
 
+.about-us:first-of-type {
+  padding-top: 35px;
+}
+
+.about-us {
+  width: 75%;
+}
+
+.about-us-header {
+  width: 100%;
+  height: 150px;
+  line-height: 75px;
+  font-size: 2em;
+  font-family: Cabin, sans-serif;
+  text-decoration: underline;
+  color: #fff;
+}
+
+/* CONTACT PAGE */
+
+.contact-container { background-image: url('deli-three.jpg'); }
+
+.contact {
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.contact-info {
+  position: absolute;
+  top: 50px;
+  left: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  width: 75%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
+
+.open-days {
+  font-family: Cabin, sans-serif;
 }
