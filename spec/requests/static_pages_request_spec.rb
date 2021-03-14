@@ -6,6 +6,8 @@ RSpec.describe "StaticPages", type: :request do
     it "returns http success" do
       get "/"
       expect(response).to have_http_status(:success)
+      expect(response).to render_template('shared/_nav')
+      expect(response).to render_template('home')
     end
   end
 
@@ -13,6 +15,8 @@ RSpec.describe "StaticPages", type: :request do
     it "returns http success" do
       get "/about"
       expect(response).to have_http_status(:success)
+      expect(response).to render_template('shared/_nav')
+      expect(response).to render_template('about')
     end
   end
 
@@ -20,6 +24,8 @@ RSpec.describe "StaticPages", type: :request do
     it "returns http success" do
       get "/contact"
       expect(response).to have_http_status(:success)
+      expect(response).to render_template('shared/_nav')
+      expect(response).to render_template('contact')
     end
   end
 

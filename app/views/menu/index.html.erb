@@ -1,0 +1,8 @@
+<div class="container main-menu">
+  <% @products.each do |product| %>
+    <div class="col-4">
+      <strong><%= product.name %></strong> | <em>$<%= product.price %></em> <br />
+      <%= product.description %>
+    </div>
+  <% end %>
+</div>
