@@ -4,6 +4,6 @@ class MenuController < ApplicationController
   end
 
   def search
-    @results = Product.where()
+
   end
 end

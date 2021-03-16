@@ -13,8 +13,6 @@ RSpec.describe "Menu", type: :request do
   describe "GET /search" do
     it 'returns success upon filtering results' do
       get '/menu'
-      page.check 'vegan'
-      page.click('Filter')
       expect(response).to have_http_status(:success)
     end
   end
