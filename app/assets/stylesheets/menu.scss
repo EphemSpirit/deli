@@ -18,7 +18,8 @@
 
 /* MENU BODY */
 
-.main-menu {
+.main-menu,
+.results {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -30,3 +31,11 @@
   width: 18rem;
   margin-bottom: 20px;
 }
+
+/* SEARCH FORM */
+
+.search-btn { display: none; }
+
+.term-input { width: 20%; }
+
+.results-header { font-family: Cabin, sans-serif; }

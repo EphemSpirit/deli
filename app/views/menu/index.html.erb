@@ -2,22 +2,15 @@
   <section class="menu-title">
     <p>Main Menu</p>
   </section>
-  <%= form_with(url: "/search", method: :GET) do |f| %>
-    <%= f.text_field :term, placeholder: "Search our menu..." %>
-    <%= f.select :filter, [["All"], ["Vegan", :vegan], ["Vegetarian", :vegetarian], ["Dairy Free", :dairy_free], ["Nut Free", :nut_free]] %>
-    <%= f.submit "Search" %>
-  <% end %>
-</div>
-
-<div class="container main-menu">
-  <% @products.each do |product| %>
-    <div class="card product-card">
-      <%= image_tag(product.image, class: "product-image") %>
-      <div class="card-body">
-        <h5 class="card-title"><%= product.name %></h5>
-        <p class="card-text"><%= product.description %></p>
-        <a href="#" class="btn btn-primary">Add to Cart</a>
-      </div>
+  <%= form_with(url: "/search", method: :GET, remote: true, html: { class: "form-group search-form" }) do |f| %>
+    <div class="input-group">
+      <%= f.text_field :term, placeholder: "Search our menu...", class: "form-control term-input" %>
+      <%= f.select :filter, [["--Filter--"], ["Vegan", :vegan], ["Vegetarian", :vegetarian], ["Dairy Free", :dairy_free], ["Nut Free", :nut_free]] %>
+      <%= f.submit "Search", class: "search-btn" %>
     </div>
   <% end %>
 </div>
+
+<div id="results"></div>
+
+<%= render 'all_items', products: @products %>

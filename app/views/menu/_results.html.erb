@@ -1,0 +1,17 @@
+<div class="container">
+  <h1 class="results-header">Search Results</h1>
+</div>
+
+<div class="container results">
+  <%= @results.each do |result| %>
+    <div class="card product-card">
+      <%= image_tag(result.image, class: "product-image") %>
+      <div class="card-body">
+        <h5 class="card-title"><%= result.name %></h5>
+        <p class="card-text"><%= result.description %></p>
+        <a href="#" class="btn btn-primary">Add to Cart</a>
+      </div>
+    </div>
+  <% end %>
+</div>
+<hr />

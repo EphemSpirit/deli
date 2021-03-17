@@ -1,0 +1,12 @@
+<div class="container main-menu">
+  <% products.each do |product| %>
+    <div class="card product-card">
+      <%= image_tag(product.image, class: "product-image") %>
+      <div class="card-body">
+        <h5 class="card-title"><%= product.name %></h5>
+        <p class="card-text"><%= product.description %></p>
+        <a href="#" class="btn btn-primary">Add to Cart</a>
+      </div>
+    </div>
+  <% end %>
+</div>
