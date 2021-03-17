@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :product do
-    name { "MyString" }
+    name { "pasta thingy" }
     price { "9.99" }
     description { "MyText" }
     vegan { false }

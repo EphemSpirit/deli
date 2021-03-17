@@ -10,8 +10,8 @@ class MenuController < ApplicationController
         format.js { render partial: 'results' }
       end
     else
-      filter = params[:filter].gsub(/ /, '_').downcase!.to_sym
-      @results = @results << Product.where(filter: true)
+      filter = params[:filter].gsub(/ /, '_').downcase.to_sym
+      @results = @results.where(filter => true)
       respond_to do |format|
         format.js { render partial: 'results' }
       end
