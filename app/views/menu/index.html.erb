@@ -2,7 +2,7 @@
   <section class="menu-title">
     <p>Main Menu</p>
   </section>
-  <%= form_with(url: "/search", method: :GET, remote: true, html: { class: "form-group search-form" }) do |f| %>
+  <%= form_with(url: "/search", scope: :search, method: :GET, remote: true, html: { class: "form-group search-form" }) do |f| %>
     <div class="input-group">
       <%= f.text_field :term, placeholder: "Search our menu...", class: "form-control term-input" %>
       <%= f.select :filter, [["--Filter--"], ["Vegan", :vegan], ["Vegetarian", :vegetarian], ["Dairy Free", :dairy_free], ["Nut Free", :nut_free]] %>
