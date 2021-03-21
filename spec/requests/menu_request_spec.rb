@@ -24,7 +24,7 @@ RSpec.describe "Menu", type: :request do
 
   describe "GET /search" do
 
-    let(:product) { create(:product) }
+    let!(:product) { create(:product, :with_image) }
 
     it 'correctly successfully executes a search' do
       get search_path, xhr: true, params: { "search" => { "term" => "sta",
@@ -38,18 +38,18 @@ RSpec.describe "Menu", type: :request do
       # Product.all << FactoryBot.create(:product)
       get search_path, xhr: true, params: { "search" => { "term" => "sta",
                                                           "filter" => "--Filter--" } }
-      new_product = create(:product)
+      # new_product = create(:product)
       expect(assigns(:results)).not_to be_nil
-      expect(assigns(:results)).to include(new_product)
+      expect(assigns(:results)).to include(product)
     end
 
-    xit 'correctly filters items (filter is false)' do
+    it 'correctly filters items (filter is false)' do
       get search_path, xhr: true, params: { "search" => { "term" => "",
                                                           "filter" => "Vegan" } }
       expect(assigns(:results)).not_to include(product)
     end
 
-    xit 'correctly filters items (filter is true)' do
+    it 'correctly filters items (filter is true)' do
       get search_path, xhr: true, params: { "search" => { "term" => "",
                                                           "filter" => "Vegetarian" } }
       expect(assigns(:results)).to include(product)
