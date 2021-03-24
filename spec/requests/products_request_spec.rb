@@ -16,7 +16,7 @@ RSpec.describe "Products", type: :request do
       end
 
       it 'is successful when logged in' do
-        login_in admin
+        sign_in admin
         get my_dishes_path
         expect(response).to have_http_status(:success)
       end
@@ -25,16 +25,19 @@ RSpec.describe "Products", type: :request do
 
     context 'when logged in' do
 
+      # sign_in admin
+
       before(:each) do
-        sign_in user
         get my_dishes_path
       end
 
       it 'renders all products' do
+        sign_in admin
         expect(assigns(:products)).to eq(Product.all)
       end
 
       it 'renders unique templates' do
+        sign_in admin
         expect(response).to render_template('_admin_nav')
       end
 
@@ -46,20 +49,24 @@ RSpec.describe "Products", type: :request do
 
     context 'when logged in' do
 
+      # sign_in admin
+
       before(:each) do
-        sign_in admin
         get new_dish_path
       end
 
       it 'is successful' do
+        sign_in admin
         expect(response).to have_http_status(:success)
       end
 
       it 'renders new dish form' do
-        expect(response).to have_selector('.new-dish-form')
+        sign_in admin
+        expect(response).to have_selector('.product-form')
       end
 
       it 'has control buttons' do
+        sign_in admin
         expect(response).to have_selector('.back-btn')
         expect(response).to have_selector('.submit')
       end
@@ -70,13 +77,13 @@ RSpec.describe "Products", type: :request do
 
   describe 'POST /new_dish' do
 
-    before(:example) do
-      sign_in admin
-    end
+    # sign_in admin
 
     it 'will successfuly create a new dish' do
 
-      new_item = build([:test_item, :with_image])
+      new_item = build(:product, :with_image)
+
+      sign_in admin
 
       get new_dish_path
 
@@ -96,13 +103,15 @@ RSpec.describe "Products", type: :request do
 
   describe 'GET /edit_dish' do
 
+    # sign_in admin
+
     before(:example) do
-      sign_in admin
-      item = create([:test_item, :with_image])
+      item = create(:product, :with_image)
       get edit_dish_path(item.id)
     end
 
     it 'will render the edit form' do
+      sign_in admin
       expect(response).to have_selector("Name", text: item.name)
       expect(response).to have_selector("Price", text: item.price)
       expect(response).to have_selector("Description", text: item.description)
@@ -114,6 +123,7 @@ RSpec.describe "Products", type: :request do
     end
 
     it 'successfully updates an item' do
+      sign_in admin
       item.available = false
 
       patch edit_dish_path(item.id), params: { product: { name: new_item.name,
@@ -132,13 +142,15 @@ RSpec.describe "Products", type: :request do
 
   describe 'DELETE /remove_dish' do
 
+    # sign_in admin
+
     before(:example) do
-      sign_in admin
-      new_item = create([:test_item, :with_image])
+      new_item = create(:product, :with_image)
       get dish_path(new_item.id)
     end
 
     it 'returns 200 Satus OK after sending the delete request' do
+      sign_in admin
       expect { delete remove_dish_path(new_item.id) }.to have_http_status(:success).and redirect_to(my_dishes_path)
     end
   end
