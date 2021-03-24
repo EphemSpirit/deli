@@ -131,7 +131,16 @@ RSpec.describe "Products", type: :request do
   end
 
   describe 'DELETE /remove_dish' do
-    
+
+    before(:example) do
+      sign_in admin
+      new_item = create([:test_item, :with_image])
+      get dish_path(new_item.id)
+    end
+
+    it 'returns 200 Satus OK after sending the delete request' do
+      expect { delete remove_dish_path(new_item.id) }.to have_http_status(:success).and redirect_to(my_dishes_path)
+    end
   end
 
 end
