@@ -4,7 +4,7 @@
     <div class="card-body">
       <h5 class="card-title"><%= @product.name %></h5>
       <p class="text"><%= @product.description %></p>
-      <%= link_to "Edit Item", edit_product_path(@product) %>
+      <%= link_to "Edit Item", edit_product_path(@product), class: "btn btn-primary" %>
     </div>
   </div>
 </div>

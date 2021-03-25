@@ -1,0 +1,34 @@
+<div class="container new-item-form">
+  <h2 class="heading">Add a Menu Item</h2>
+
+  <%= form_with(model: @product, html: { class: "form-group" }) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: "Name of Dish" %>
+
+    <%= f.label :price %>
+    <%= f.number_field :price, class: "form-control" %>
+
+    <%= f.label :description %>
+    <%= f.text_area :description, placeholder: "Dish description", class: "form-control" %>
+
+    <%= f.label :vegan, "Vegan:" %>
+    <%= f.select :vegan, ["True", "False"], class: "form-control" %>
+
+    <%= f.label :vegetarian, "Vegetarian:" %>
+    <%= f.select :vegetarian, ["True", "False"], class: "form-control" %>
+
+    <%= f.label :nut_free, "Nut Free:" %>
+    <%= f.select :nut_free, ["True", "False"], class: "form-control" %>
+
+    <%= f.label :dairy_free, "Dairy Free:" %>
+    <%= f.select :dairy_free, ["True", "False"], class: "form-control" %>
+
+    <%= f.label :available, "Available:" %>
+    <%= f.select :available, ["True", "False"], class: "form-control" %>
+
+    <div class="form-actions">
+      <%= f.submit "Create Dish", class: "btn btn-primary" %>
+    </div>
+
+  <% end %>
+</div>

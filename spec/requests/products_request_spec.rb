@@ -45,30 +45,53 @@ RSpec.describe "Products", type: :request do
 
     context 'when logged in' do
 
-      # sign_in admin
-
-      before(:each) do
-        get new_product_path
-      end
-
       it 'is successful' do
         sign_in admin
+        get new_product_path
         expect(response).to have_http_status(:success)
       end
 
       it 'renders new dish form' do
         sign_in admin
+        get new_product_path
         expect(response).to have_selector('.product-form')
       end
 
       it 'has control buttons' do
         sign_in admin
+        get new_product_path
         expect(response).to have_selector('.back-btn')
         expect(response).to have_selector('.submit')
       end
 
     end
 
+  end
+
+  describe 'GET /product/:id' do
+
+    before(:example) do
+      @item = create(:product, :with_image)
+    end
+
+    it 'renders successfully' do
+      sign_in admin
+      get product_path(@item)
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'correctly assigns @product' do
+      sign_in admin
+      get product_path(@item)
+      expect(assigns(:product)).to eq(@item)
+    end
+
+    it 'displays the item card' do
+      sign_in admin
+      get product_path(@item)
+      expect(response.body).to include(@item.name)
+      expect(response.body).to include(@item.description)
+    end
   end
 
   describe 'POST /products/new' do
