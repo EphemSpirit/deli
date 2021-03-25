@@ -4,20 +4,20 @@ RSpec.describe "Products", type: :request do
 
   let(:admin) { create(:admin) }
 
-  describe 'GET /my_dishes' do
+  describe 'GET /products' do
 
     # before(:example) { get my_dishes_path }
 
     context 'not logged in' do
 
       it 'redirects to login when not signed in' do
-        get my_dishes_path
+        get products_path
         expect(response).to redirect_to(admin_session_path)
       end
 
       it 'is successful when logged in' do
         sign_in admin
-        get my_dishes_path
+        get products_path
         expect(response).to have_http_status(:success)
       end
 
@@ -25,19 +25,15 @@ RSpec.describe "Products", type: :request do
 
     context 'when logged in' do
 
-      # sign_in admin
-
-      before(:each) do
-        get my_dishes_path
-      end
-
       it 'renders all products' do
         sign_in admin
+        get products_path
         expect(assigns(:products)).to eq(Product.all)
       end
 
       it 'renders unique templates' do
         sign_in admin
+        get products_path
         expect(response).to render_template('_admin_nav')
       end
 
@@ -45,14 +41,14 @@ RSpec.describe "Products", type: :request do
 
   end
 
-  describe 'GET /new_dish' do
+  describe 'GET /product/new' do
 
     context 'when logged in' do
 
       # sign_in admin
 
       before(:each) do
-        get new_dish_path
+        get new_product_path
       end
 
       it 'is successful' do
@@ -75,7 +71,7 @@ RSpec.describe "Products", type: :request do
 
   end
 
-  describe 'POST /new_dish' do
+  describe 'POST /products/new' do
 
     # sign_in admin
 
@@ -85,9 +81,9 @@ RSpec.describe "Products", type: :request do
 
       sign_in admin
 
-      get new_dish_path
+      get new_product_path
 
-      post new_dish_path, params: { product: { name: new_item.name,
+      post new_product_path, params: { product: { name: new_item.name,
                                                price: new_item.price,
                                                description: new_item.description,
                                                vegan: new_item.vegan,
@@ -107,7 +103,7 @@ RSpec.describe "Products", type: :request do
 
     before(:example) do
       item = create(:product, :with_image)
-      get edit_dish_path(item.id)
+      get edit_product_path(item.id)
     end
 
     it 'will render the edit form' do
@@ -126,7 +122,7 @@ RSpec.describe "Products", type: :request do
       sign_in admin
       item.available = false
 
-      patch edit_dish_path(item.id), params: { product: { name: new_item.name,
+      patch edit_product_path(item.id), params: { product: { name: new_item.name,
                                                price: new_item.price,
                                                description: new_item.description,
                                                vegan: new_item.vegan,
@@ -146,12 +142,12 @@ RSpec.describe "Products", type: :request do
 
     before(:example) do
       new_item = create(:product, :with_image)
-      get dish_path(new_item.id)
+      get product_path_path(new_item.id)
     end
 
     it 'returns 200 Satus OK after sending the delete request' do
       sign_in admin
-      expect { delete remove_dish_path(new_item.id) }.to have_http_status(:success).and redirect_to(my_dishes_path)
+      expect { delete product_path(new_item.id) }.to have_http_status(:success).and redirect_to(products_path)
     end
   end
 

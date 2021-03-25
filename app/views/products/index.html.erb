@@ -1,0 +1,30 @@
+<div class="container">
+  <table class="table-striped table-bordered table-responsive table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Dish</th>
+        <th scope="col">Price</th>
+        <th scope="col">Description</th>
+        <th scope="col">Vegan</th>
+        <th scope="col">Vegetarian</th>
+        <th scope="col">Dairy Free</th>
+        <th scope="col">Nut Free</th>
+        <th scope="col">Available</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <th scope="row"><%= link_to product.name, product_path(product) %></th>
+          <td>$<%= product.price %></td>
+          <td><%= product.description %></td>
+          <td><%= product.vegan.to_s %></td>
+          <td><%= product.vegetarian.to_s %></td>
+          <td><%= product.dairy_free.to_s %></td>
+          <td><%= product.nut_free.to_s %></td>
+          <td><%= product.available.to_s %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
