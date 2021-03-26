@@ -1,7 +1,7 @@
 <div class="container new-item-form">
   <h2 class="heading">Add a Menu Item</h2>
 
-  <%= form_with(model: @product, html: { class: "form-group" }) do |f| %>
+  <%= form_with(model: @product, html: { class: "form-group new-item-form" }) do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name, placeholder: "Name of Dish" %>
 
@@ -11,23 +11,26 @@
     <%= f.label :description %>
     <%= f.text_area :description, placeholder: "Dish description", class: "form-control" %>
 
+    <%= f.label :image %>
+    <%= f.file_field :image, class: "form-control" %>
+
     <%= f.label :vegan, "Vegan:" %>
-    <%= f.select :vegan, ["True", "False"], class: "form-control" %>
+    <%= f.select :vegan, ["True", "False"], class: "form-control select-field" %>
 
     <%= f.label :vegetarian, "Vegetarian:" %>
-    <%= f.select :vegetarian, ["True", "False"], class: "form-control" %>
+    <%= f.select :vegetarian, ["True", "False"], class: "form-control select-field" %>
 
     <%= f.label :nut_free, "Nut Free:" %>
-    <%= f.select :nut_free, ["True", "False"], class: "form-control" %>
+    <%= f.select :nut_free, ["True", "False"], class: "form-control select-field" %>
 
     <%= f.label :dairy_free, "Dairy Free:" %>
-    <%= f.select :dairy_free, ["True", "False"], class: "form-control" %>
+    <%= f.select :dairy_free, ["True", "False"], class: "form-control select-field" %>
 
     <%= f.label :available, "Available:" %>
-    <%= f.select :available, ["True", "False"], class: "form-control" %>
+    <%= f.select :available, ["True", "False"], class: "form-control select-field" %>
 
     <div class="form-actions">
-      <%= f.submit "Create Dish", class: "btn btn-primary" %>
+      <%= f.submit "Create Dish", class: "btn btn-primary create-dish" %>
     </div>
 
   <% end %>
