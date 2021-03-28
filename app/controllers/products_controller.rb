@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :find_product, only: %i[show edit update destroy]
 
   def index
-    @products = Product.all
+    @products = Product.all.order(:id)
   end
 
   def new
@@ -52,6 +52,6 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:name, :price, :description, :vegan, :vegetarian, :nut_free, :dairy_free, :available)
+      params.require(:product).permit(:name, :price, :image, :description, :vegan, :vegetarian, :nut_free, :dairy_free, :available)
     end
 end

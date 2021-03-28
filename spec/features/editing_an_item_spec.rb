@@ -21,6 +21,8 @@ RSpec.describe 'Editing a Menu Item', type: :feature do
 
     #change something
     fill_in "Description", with: "I've decided I don't like poutine"
-    expect { click_button "Update Item" }.to have_http_status(:success).and redirect_to(products_path)
+    expect { click_button "Update Item" }.to have_http_status(:success)
+    expect(item.description).to eq("I've decided I don't like poutine")
+    expect(page).to have_text(item.description)
   end
 end
