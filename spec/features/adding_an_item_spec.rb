@@ -12,6 +12,8 @@ RSpec.describe 'Adding a Menu Item', type: :feature do
     #button puts me in the right place
     click_link "Add an Item"
     expect(page).to have_text("Add a Menu Item")
+    expect(page).to have_selector('.new-item-form')
+    expect(page).to have_selector("input.create-dish")
 
     #fill out the new item form and submit it
     fill_in "Name", with: "Test Item"
@@ -24,7 +26,7 @@ RSpec.describe 'Adding a Menu Item', type: :feature do
     select("True", from: "Available")
     attach_file "product_image", 'spec/support/assets/canoli.jpg'
     #click_button "Attach File"
-    expect { click_button "Create Dish" }.to change { Product.count }.by(1)
+    expect { find('input[name="commit"]').click }.to change { Product.count }.by(1)
     expect(page).to have_text("Test Item")
   end
 end

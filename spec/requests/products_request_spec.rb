@@ -28,7 +28,8 @@ RSpec.describe "Products", type: :request do
       it 'renders all products' do
         sign_in admin
         get products_path
-        expect(assigns(:products)).to eq(Product.all)
+        expect(response).to have_http_status(:success)
+        expect(assigns(:products)).to eq(Product.all.order(:id))
       end
 
       it 'renders unique templates' do
@@ -51,17 +52,10 @@ RSpec.describe "Products", type: :request do
         expect(response).to have_http_status(:success)
       end
 
-      it 'renders new dish form' do
+      it 'renders the form' do
         sign_in admin
         get new_product_path
-        expect(response).to have_selector('.product-form')
-      end
-
-      it 'has control buttons' do
-        sign_in admin
-        get new_product_path
-        expect(response).to have_selector('.back-btn')
-        expect(response).to have_selector('.submit')
+        expect(response).to render_template('_form')
       end
 
     end
@@ -97,80 +91,72 @@ RSpec.describe "Products", type: :request do
   describe 'POST /products/new' do
 
     # sign_in admin
+    let!(:new_item) { create(:product, :with_image) }
 
     it 'will successfuly create a new dish' do
-
-      new_item = build(:product, :with_image)
 
       sign_in admin
 
       get new_product_path
 
-      post new_product_path, params: { product: { name: new_item.name,
+      post products_path, params: { product: { name: new_item.name,
                                                price: new_item.price,
                                                description: new_item.description,
                                                vegan: new_item.vegan,
                                                vegetarian: new_item.vegetarian,
                                                nut_free: new_item.nut_free,
                                                dairy_free: new_item.dairy_free,
-                                               available: new_item.available,
-                                               image: new_item.image } }
+                                               available: new_item.available } }
 
-      expect(response).to have_http_status(:success).and redirect_to(dish_path(new_item.id))
+      expect(response).to have_http_status(302)
     end
   end
 
   describe 'GET /edit_dish' do
 
     # sign_in admin
+    let!(:item) { create(:product, :with_image) }
 
-    before(:example) do
-      item = create(:product, :with_image)
-      get edit_product_path(item.id)
-    end
+    # before(:example) do
+    #   get edit_product_path(item.id)
+    # end
 
-    it 'will render the edit form' do
+    it 'renders the form' do
       sign_in admin
-      expect(response).to have_selector("Name", text: item.name)
-      expect(response).to have_selector("Price", text: item.price)
-      expect(response).to have_selector("Description", text: item.description)
-      expect(response).to have_selector("Vegan", text: item.vegan.to_s)
-      expect(repsonse).to have_selector("Vegetarian", text: item.vegetarian.to_s)
-      expect(response).to have_selector("Dairy Free", text: item.dairy_free.to_s)
-      expect(response).to have_selector("Nut Free", text: item.nut_free.to_s)
-      expect(response).to have_selector("Available", text: item.available.to_s)
+      get edit_product_path(item.id)
+      expect(response).to render_template('_form')
     end
 
     it 'successfully updates an item' do
       sign_in admin
       item.available = false
 
-      patch edit_product_path(item.id), params: { product: { name: new_item.name,
-                                               price: new_item.price,
-                                               description: new_item.description,
-                                               vegan: new_item.vegan,
-                                               vegetarian: new_item.vegetarian,
-                                               nut_free: new_item.nut_free,
-                                               dairy_free: new_item.dairy_free,
-                                               available: new_item.available,
-                                               image: new_item.image } }
+      patch product_path(item.id), params: { product: { name: item.name,
+                                               price: item.price,
+                                               description: item.description,
+                                               vegan: item.vegan,
+                                               vegetarian: item.vegetarian,
+                                               nut_free: item.nut_free,
+                                               dairy_free: item.dairy_free,
+                                               available: item.available } }
 
-      expect(response).to have_http_status(:success).and redirect_to(dish_path(item.id))
+      expect(response).to have_http_status(302).and redirect_to(product_path(item.id))
     end
   end
 
   describe 'DELETE /remove_dish' do
 
     # sign_in admin
+    let(:new_item) { create(:product, :with_image) }
 
     before(:example) do
-      new_item = create(:product, :with_image)
-      get product_path_path(new_item.id)
+      get product_path(new_item.id)
     end
 
-    it 'returns 200 Satus OK after sending the delete request' do
+    it 'returns 302 Satus REDIRECT after sending the delete request' do
       sign_in admin
-      expect { delete product_path(new_item.id) }.to have_http_status(:success).and redirect_to(products_path)
+      delete product_path(new_item.id)
+      expect(response).to have_http_status(:redirect).and redirect_to(products_path)
     end
   end
 
