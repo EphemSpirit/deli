@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   # delete '/remove_dish/:id', to: 'products#destroy'
 
   resources :products
+  resources :carts
+  resources :line_items
 
   get 'menu', to: 'menu#index'
   get 'search', to: 'menu#search'
