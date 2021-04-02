@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+body { background: linear-gradient(45deg, #832511, #53170A); }
+
 .menu-heading {
   display: flex;
   flex-direction: column;
@@ -14,6 +16,7 @@
   width: 100%;
   font-family: Cabin, sans-serif;
   font-size: 2em;
+  color: white;
 }
 
 /* MENU BODY */
@@ -38,6 +41,9 @@
 
 .term-input { width: 20%; }
 
-.results-header { font-family: Cabin, sans-serif; }
+.results-header {
+  font-family: Cabin, sans-serif;
+  color: white;
+}
 
 #text { display: none; }

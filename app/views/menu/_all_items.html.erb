@@ -1,11 +1,11 @@
 <div class="container main-menu">
-  <% products.each do |product| %>
+  <% items.each do |item| %>
     <div class="card product-card">
-      <%= image_tag(product.image, class: "product-image") %>
+      <%= image_tag(item.image, class: "product-image") %>
       <div class="card-body">
-        <h5 class="card-title"><%= product.name %></h5>
-        <p class="card-text"><%= product.description %></p>
-        <%= button_to "Add to Cart", line_items_path(id: product.id,sproduct_id: product.id), class: "btn btn-primary" %>
+        <h5 class="card-title"><%= item.name %></h5>
+        <p class="card-text"><%= item.description %></p>
+        <%= button_to "Add to Cart", line_items_path(id: item.id, product_id: item.id), class: "btn btn-primary" %>
       </div>
     </div>
   <% end %>

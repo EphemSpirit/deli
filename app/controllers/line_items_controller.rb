@@ -40,7 +40,7 @@ class LineItemsController < ApplicationController
   end
 
   def destroy
-    @cart = Cart.find_by(session[:cart_id])
+    @cart = Cart.find(session[:cart_id])
     @line_item.destroy
     redirect_to @cart
   end
@@ -48,7 +48,7 @@ class LineItemsController < ApplicationController
   private
 
     def find_item
-      @line_item = LineItem.find(params[:product_id])
+      @line_item = LineItem.find(params[:id])
     end
 
     def line_item_params

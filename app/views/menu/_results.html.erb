@@ -9,7 +9,7 @@
       <div class="card-body">
         <h5 class="card-title"><%= result.name %></h5>
         <p class="card-text"><%= result.description %></p>
-        <a href="#" class="btn btn-primary">Add to Cart</a>
+        <%= button_to "Add to Cart", line_items_path(id: result.id, product_id: result.id), class: "btn btn-primary" %>
       </div>
     </div>
   <% end %>

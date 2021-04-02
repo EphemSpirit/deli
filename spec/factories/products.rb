@@ -8,24 +8,19 @@ FactoryBot.define do
     dairy_free { false }
     nut_free { true }
     available { true }
+    factory :product_with_line_item do
+      transient do
+        line_items_count { 1 }
+      end
+
+      after(:create) do |product, evaluator|
+        create_list(:line_item, evaluator.line_items_count, product: product)
+        product.reload
+      end
+    end
 
     trait :with_image do
       image { fixture_file_upload(Rails.root.join('spec', 'support', 'assets', 'canoli.jpg'), 'image/png') }
-    end
-  end
-
-  factory :test_item do
-    name { "New Item" }
-    price { "30.00" }
-    description { "New item! Buy it now!" }
-    vegan { true }
-    vegetarian { true }
-    dairy_free { true }
-    nut_free { false }
-    available { true }
-
-    trait :with_image do
-      image {fixture_file_upload(Rails.root.join('spec', 'support', 'assets', 'bread.jpg'), 'image/png') }
     end
   end
 end
