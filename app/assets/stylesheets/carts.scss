@@ -2,15 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.subtotal { float: right; }
+.subtotal {
+  float: right;
+  color: white;
+}
 
 .product-price { text-align: right; }
 
 .cart-table { height: 100vh; }
 
 .cart-heading {
+  margin-top: 20px;
   font-family: Cabin, sans-serif;
   color: white;
 }
 
 .itemized-cart * { color: white; }
+
+.cart-total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  h3 {
+    color: white;
+  }
+  a {
+    color: #40CC95;
+  }
+}

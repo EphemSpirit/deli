@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+th,
+td,
+.heading {
+  color: white;
+}
+
+a { color: #40CC95; }
+
 .product-show {
   display: flex;
   justify-content: center;

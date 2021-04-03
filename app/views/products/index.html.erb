@@ -1,6 +1,6 @@
 <div class="container">
   <h2 class="heading">All Current Menu Items</h2>
-  <table class="table-striped table-bordered table-responsive table-hover">
+  <table class="table-striped table-bordered table-responsive table-hover items-table">
     <thead>
       <tr>
         <th scope="col">Dish</th>
@@ -16,7 +16,7 @@
     <tbody>
       <% @products.each do |product| %>
         <tr>
-          <th scope="row"><%= link_to product.name, product_path(product) %></th>
+          <th scope="row" class="item-link"><%= link_to product.name, product_path(product) %></th>
           <td>$<%= product.price %></td>
           <td><%= product.description %></td>
           <td><%= product.vegan.to_s %></td>

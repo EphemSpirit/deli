@@ -1,5 +1,5 @@
 <div class="container cart-table">
-  <h2 class="heading cart-heading">My Cart (<%= link_to "Empty", cart_path(@cart), method: :delete, data: { confirm: "Are you sure? "} %>)</h2>
+  <h2 class="heading cart-heading">My Cart</h2>
   <table class="table table-bordered itemized-cart">
     <thead>
       <tr>
@@ -16,5 +16,8 @@
       <% end %>
     </tbody>
   </table>
-  <h3 class="heading subtotal">Total: $<%= @cart.total_price %></h3>
+  <div class="container cart-total">
+    <small><%= link_to "Empty Cart", cart_path(@cart), method: :delete, data: { confirm: "Really empty the cart?" } %></small>
+    <h3>Total: $<%= @cart.total_price %></h3>
+  </div>
 </div>
