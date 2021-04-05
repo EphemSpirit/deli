@@ -1,23 +1,4 @@
 <div class="container cart-table">
   <h2 class="heading cart-heading">My Cart</h2>
-  <table class="table table-bordered itemized-cart">
-    <thead>
-      <tr>
-        <th scope="col">Item</th>
-        <th scope="col" class="product-price">Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @cart.line_items.each do |item| %>
-        <tr>
-          <td><%= item.product.name %> <small>(<%= link_to "Remove", line_item_path(item), method: :delete, data: { confirm: " Are you sure?" } %>)</small></td>
-          <td class="product-price">$<%= item.product.price %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <div class="container cart-total">
-    <small><%= link_to "Empty Cart", cart_path(@cart), method: :delete, data: { confirm: "Really empty the cart?" } %></small>
-    <h3>Total: $<%= @cart.total_price %></h3>
-  </div>
+  <%= render 'cart_items', items: @cart.line_items %>
 </div>

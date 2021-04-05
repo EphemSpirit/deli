@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
-  before_action :find_cart, only: %i[show edit update destroy]
+  before_action :find_cart, only: %i[show edit update destroy set_cart_items]
+  before_action :set_cart_items, only: [:show]
 
   def index
     @carts = Cart.all
@@ -55,5 +56,9 @@ class CartsController < ApplicationController
       logger.error "Attempt to access invalid cart #{params[:id]}"
       redirect_to root_path
       flash[:notice] = "That car doesn't exist"
+    end
+
+    def set_cart_items
+      @cart.line_items
     end
 end
