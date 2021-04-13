@@ -3,7 +3,7 @@
 </div>
 
 <div class="container results">
-  <%= @results.each do |result| %>
+  <% @results.each do |result| %>
     <div class="card product-card">
       <%= image_tag(result.image, class: "product-image") %>
       <div class="card-body">
