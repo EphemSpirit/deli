@@ -17,9 +17,9 @@ Rails.application.routes.draw do
   # patch '/edit_dish/:id', to: 'products#update'
   # delete '/remove_dish/:id', to: 'products#destroy'
 
-  scope :admin do
-    resources :products
-  end
+  # scope :admin do
+  #   resources :products
+  # end
 
   resources :carts
   resources :line_items
