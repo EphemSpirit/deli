@@ -6,10 +6,13 @@ RSpec.describe 'Removing a cart item', type: :feature do
 
   it 'removes a cart item' do
     visit menu_path
-    page.refresh
-    click_link "My Cart"
-    expect(page).to have_link("Remove Item")
-    expect { click_link("Remove item") }.to change { cart.line_items.count }.by(-1)
-    expect(page).to have_text("Item removed")
+    expect(page).to have_selector(".btn-primary")
+    click_button(".btn-primary", match: :first)
+    expect(page).to have_content("Item added to cart!")
+
+    #Remove the item and verify path/flash message
+    click_link "Remove"
+    expect(current_path).to eq("/carts/#{cart.id}")
+
   end
 end

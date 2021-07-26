@@ -5,7 +5,7 @@
 <div class="container main-menu">
   <% items.each do |item| %>
     <div class="card product-card">
-      <%= image_tag(item.image, class: "product-image") %>
+      <%= image_tag(item.image, class: "product-image") if item.image.attached? %>
       <div class="card-body">
         <h5 class="card-title"><%= item.name %></h5>
         <p class="card-text"><%= item.description %></p>
