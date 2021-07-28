@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Admin Products", type: :request do
 
   let!(:user) { create(:admin_user) }
+  let(:item) { create(:product) }
 
   context "not logged in" do
     it "redirects a non logged in user" do
@@ -25,4 +26,5 @@ RSpec.describe "Admin Products", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
 end

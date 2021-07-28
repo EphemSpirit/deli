@@ -34,8 +34,6 @@ RSpec.describe "Menu", type: :request do
 
     #find otu why broke
     it 'correctly assigns @results' do
-      #product = FactoryBot.create(:product)
-      # Product.all << FactoryBot.create(:product)
       get search_path, xhr: true, params: { "search" => { "term" => "sta",
                                                           "filter" => "--Filter--" } }
       # new_product = create(:product)
