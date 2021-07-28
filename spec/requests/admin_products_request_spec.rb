@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Admin Products", type: :request do
 
+  let!(:user) { create(:admin_user) }
+
   context "not logged in" do
     it "redirects a non logged in user" do
       get admin_products_path
@@ -10,11 +12,17 @@ RSpec.describe "Admin Products", type: :request do
   end
 
   context "logging in with invalid info" do
-    let(:user) { create(:admin_user) }
 
     it "re-renders when wrong password" do
       post admin_user_session_path, params: { email: user.email, password: "wrong_password" }
-      expect(current_path).to eq(new_admin_session_path)
+      expect(response.body).to include("Invalid Email or password")
+    end
+  end
+
+  context "logging in with correct info" do
+    it "success when valid info" do
+      post admin_user_session_path, params: { email: user.email, password: user.password }
+      expect(response).to have_http_status(200)
     end
   end
 end

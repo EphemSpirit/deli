@@ -5,7 +5,7 @@
 <div class="container results">
   <% @results.each do |result| %>
     <div class="card product-card">
-      <%= image_tag(result.image, class: "product-image") %>
+      <%= image_tag(result.image, class: "product-image") if result.image.attached? %>
       <div class="card-body">
         <h5 class="card-title"><%= result.name %></h5>
         <p class="card-text"><%= result.description %></p>

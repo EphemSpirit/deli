@@ -22,8 +22,8 @@ RSpec.describe "LineItems", type: :request do
       item = cart.line_items.first
       delete line_item_path(item)
       expect(response).to have_http_status(302)
-      #follow_redirect!
-      #expect(response.body).to include("Item removed from cart.")
+      follow_redirect!
+      expect(response.body).to include("Item removed from cart.")
     end
   end
 
