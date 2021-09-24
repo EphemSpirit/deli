@@ -18,4 +18,8 @@ class MenuController < ApplicationController
       end
     end
   end
+
+  def reset
+    system("heroku restart -a hundessohn-deli")
+  end
 end

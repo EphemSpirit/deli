@@ -21,4 +21,5 @@ Rails.application.routes.draw do
 
   get 'menu', to: 'menu#index'
   get 'search', to: 'menu#search'
+  post 'reset', to: 'menu#reset'
 end

@@ -31,6 +31,7 @@ gem 'active_storage_validations', '~> 0.9.2'
 gem 'faker', '~> 2.17'
 gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'aws-sdk-s3', '~> 1.93'
+gem 'platform-api', '~> 3.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
